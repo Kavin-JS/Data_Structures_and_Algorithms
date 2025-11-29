@@ -1,46 +1,35 @@
-//CH.SC.U4CSE24119
 #include <stdio.h>
-#include <stdlib.h>
+
+int linearSearch(int arr[], int n, int target) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
 
 int main() {
-    printf("CH.SC.U4CSE24119\n");
+    int arr[100], n, target;
 
-    int n, target, found = 0;
-
-    printf("Enter number of elements: ");
+    printf("Enter the number of elements in the array: ");
     scanf("%d", &n);
-
-    if (n <= 0) {
-        printf("Invalid size.\n");
-        return 1;
-    }
-
-    int *arr = (int *)malloc(n * sizeof(int));
-    if (arr == NULL) {
-        printf("Memory allocation failed.\n");
-        return 1;
-    }
 
     printf("Enter %d elements:\n", n);
     for (int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
     }
 
-    printf("Enter the number to search: ");
+    printf("Enter the element to search for: ");
     scanf("%d", &target);
 
-    for (int i = 0; i < n; i++) {
-        if (arr[i] == target) {
-            printf("Number %d found at index %d.\n", target, i);
-            found = 1;
-            break;
-        }
+    int result = linearSearch(arr, n, target);
+
+    if (result != -1) {
+        printf("Element found at index %d.\n", result);
+    } else {
+        printf("Element not found in the array.\n");
     }
 
-    if (!found) {
-        printf("Number %d not found in the array.\n", target);
-    }
-
-    free(arr);
     return 0;
 }
